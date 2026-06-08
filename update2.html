@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Online-Dice</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -21,6 +21,7 @@
         background: #54b4f0;
       }
 
+      /* ═══ PAGE BACKGROUND ═══ */
       .page-wrap {
         min-height: 100vh;
         background-image: url("onlinedicebg.png");
@@ -33,17 +34,20 @@
         align-items: center;
       }
 
+      /* ═══ CARD ═══ */
       .card {
-        background: #2e9dff;
+        background: rgba(53, 160, 255, 0.8);
         border: 5px solid #9acdfa;
         border-radius: 20px;
         padding: 24px 28px 20px;
         width: 430px;
         text-align: center;
         max-width: 95vw;
+        margin: 0 auto 50px;
         position: relative;
       }
 
+      /* Card views — normal dice view vs lucky roll view */
       .view-dice {
         display: block;
       }
@@ -57,14 +61,16 @@
         display: block;
       }
 
+      /* ═══ TITLE ═══ */
       .game-title {
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 1.65rem;
         color: #fff;
         letter-spacing: 2.5px;
         margin-bottom: 10px;
       }
 
+      /* ═══ SELECTS ═══ */
       .selects-row {
         display: flex;
         gap: 10px;
@@ -72,67 +78,64 @@
         justify-content: center;
       }
       .game-select {
-        appearance: none; 
+        appearance: none;
+        letter-spacing: 0.5px;
         background: #fff;
-        border: 2px solid #0088ff;
-        border-radius: 2px;
-        padding: 8px 26px 8px 8px;
-        font-family: "Nunito", sans-serif;
-        font-weight: 900;
-        -webkit-text-stroke: 0.6px #0088ff;
-        font-size: 14px;
+        border: none;
+        padding: 8px 26px 8px 10px;
+        font-family: "Luckiest Guy", cursive;
+        font-size: 18px;
         color: #0088ff;
         text-transform: uppercase;
         cursor: pointer;
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230088ff' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233a7dd4' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
         background-repeat: no-repeat;
-        background-position: right 2px center;
+        background-position: right 5px center;
         background-size: 0.9em;
-        box-shadow: none;
-        flex: 1;
-        min-width: 0;
-        text-overflow: clip;
-        overflow: hidden;
-        white-space: nowrap;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
       }
       .game-select:focus {
         outline: none;
       }
 
+      /* ═══ DICE AREA ═══ */
       #dice-area {
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
         min-height: 80px;
-        align-items: center;
       }
 
-      /* FIX 4: gentle vibrate — subtle, like the .com version */
+      /* ── Gentle vibrate (NOT wild shake) ── */
       @keyframes vibrate {
         0%,
         100% {
           transform: translate(0, 0) rotate(0deg);
         }
-        25% {
-          transform: translate(-1.5px, 0.5px) rotate(-0.4deg);
+        20% {
+          transform: translate(-1.5px, 0) rotate(-0.5deg);
         }
-        50% {
-          transform: translate(1.5px, -0.5px) rotate(0.4deg);
+        40% {
+          transform: translate(1.5px, 0) rotate(0.5deg);
         }
-        75% {
-          transform: translate(-1px, -0.5px) rotate(-0.3deg);
+        60% {
+          transform: translate(-1px, 0) rotate(-0.3deg);
+        }
+        80% {
+          transform: translate(1px, 0) rotate(0.3deg);
         }
       }
       #dice-area.vibrating .die {
-        animation: vibrate 0.13s linear infinite;
+        animation: vibrate 0.12s linear infinite;
       }
 
+      /* ═══ DIE ═══ */
       .die {
         width: 75px;
         height: 75px;
-        border-radius: 16px;
-        border: 8px solid #ffffff;
+        border-radius: 12px;
+        border: 6px solid #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -145,9 +148,9 @@
       }
 
       .c-dot {
-        width: 14px;
-        height: 14px;
-        background: #ffffff;
+        width: 11px;
+        height: 11px;
+        background: rgba(255, 255, 255, 0.85);
         border-radius: 50%;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.22);
       }
@@ -171,7 +174,7 @@
         box-shadow: none;
       }
       .die-txt {
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 2rem;
         color: #1a3d6e;
       }
@@ -194,10 +197,12 @@
         animation: rollin 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
       }
 
+      /* ═══ RESULT ROW — HIDDEN ═══ */
       #result-row {
         display: none !important;
       }
 
+      /* ═══ RESULT ID ═══ */
       .result-section {
         display: flex;
         align-items: center;
@@ -207,7 +212,7 @@
         font-weight: 300;
         color: #fff;
         font-size: 14px;
-        margin: 15px 0 10px;
+        margin: 5px 0 10px;
       }
       .result-section a {
         color: #fff;
@@ -215,11 +220,12 @@
         cursor: pointer;
       }
       .result-id-value {
-        font-weight: 800;
+        font-weight: 700;
         font-size: 15px;
         letter-spacing: 0.5px;
       }
 
+      /* ═══ ROLL BUTTON ═══ */
       .btn-roll {
         display: block;
         width: 100%;
@@ -228,7 +234,7 @@
         border-radius: 5px;
         background: #ffdf00;
         color: #fff;
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 1.45rem;
         letter-spacing: 2px;
         cursor: pointer;
@@ -263,39 +269,33 @@
         transform: none;
       }
 
+      /* ═══ INSTALL BUTTON ═══ */
       .btn-install {
         width: auto;
         min-width: 250px;
-        padding: 18px 10px 20px 10px;
-        border-radius: 20px;
-        background: linear-gradient(to bottom, #52afff, #1b74e6);
+        padding: 15px 10px 18px 12px;
+        border-radius: 22px;
+        background: linear-gradient(to bottom, #5aadee, #2270c0);
         color: #fff;
         cursor: pointer;
         text-align: center;
-        border: 2.5px solid rgba(255, 255, 255, 0.8);
-        transition: transform 0.1s;
-      }
-      .btn-install:hover {
-        background: linear-gradient(to bottom, #63bcff, #2080f4);
-      }
-      .btn-install:active {
-        transform: scale(0.97);
+        border: 2px solid white;
       }
       .btn-install .it {
-        font-size: 1.4rem;
-        font-weight: 400;
-        font-family: "Lilita One", cursive;
+        font-size: 1.25rem;
+        font-weight: 500;
+        font-family: "Luckiest Guy", cursive;
         text-transform: uppercase;
+        letter-spacing: 2px;
       }
       .btn-install .is {
         font-size: 0.95rem;
         font-style: italic;
-        font-family: "Nunito", sans-serif;
-        margin-top: 2px;
-        font-weight: 400;
-        margin-top: 5px;
+        margin-top: 4px;
+        font-weight: normal;
       }
 
+      /* ═══ CARD FOOTER ═══ */
       .card-footer {
         margin-top: 14px;
       }
@@ -303,7 +303,7 @@
         display: inline-block;
         background: rgba(255, 255, 255, 0.18);
         border-radius: 8px;
-        padding: 6px 10px;
+        padding: 6px 14px;
         font-size: 0.78rem;
         font-weight: 700;
         color: #fff;
@@ -322,68 +322,75 @@
         color: #cde8ff;
       }
 
-      /* ══ LUCKY VIEW ══ */
+      /* ═══════════════════════════════════════════
+       LUCKY ROLL VIEW (inside card, replaces content)
+    ═══════════════════════════════════════════ */
       .lucky-view-title {
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 1.4rem;
         color: #fff;
         letter-spacing: 2px;
         margin-bottom: 16px;
+        text-shadow:
+          -2px -2px 0 #1a5fa8,
+          2px -2px 0 #1a5fa8,
+          -2px 2px 0 #1a5fa8,
+          2px 2px 0 #1a5fa8;
       }
       .lucky-dice-row {
         display: flex;
         justify-content: center;
         gap: 10px;
         margin-bottom: 18px;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
       }
-      /* FIX 1: lucky die — static border, NO pulse animation */
       .lucky-die {
         width: 76px;
         height: 76px;
         border-radius: 14px;
-        border: 7px solid #c8a337; /* static gold border, no pulse */
+        border: 5px solid #f5c842;
         background: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow:
+          0 4px 0 #c49000,
+          0 6px 16px rgba(0, 0, 0, 0.2);
         flex-shrink: 0;
-        /* animation: REMOVED */
       }
       .lucky-star {
         font-size: 2.1rem;
         line-height: 1;
       }
 
-      /* Styling Container pembungkus di dalam dadu */
-      .lucky-star-container {
-        display: flex;
-        justify-content: center; /* Rata tengah horizontal */
-        align-items: center; /* Rata tengah vertikal */
-        width: 100%; /* Mengisi lebar dadu */
-        height: 100%; /* Mengisi tinggi dadu */
-        padding: 5px; /* Memberikan sedikit jarak agar tidak menyentuh garis kotak */
-        box-sizing: border-box; /* Agar padding tidak merusak ukuran kotak */
+      @keyframes goldenPulse {
+        0%,
+        100% {
+          border-color: #f5c842;
+          box-shadow:
+            0 4px 0 #c49000,
+            0 0 0 0 rgba(245, 200, 66, 0.5);
+        }
+        50% {
+          border-color: #ffe566;
+          box-shadow:
+            0 4px 0 #c49000,
+            0 0 0 8px rgba(245, 200, 66, 0);
+        }
       }
-
-      /* Styling Gambar Bintang */
-      .lucky-star-img {
-        /* Atur ukuran bintang di sini agar pas di dalam dadu */
-        width: 85%; /* Ubah persentase ini jika bintang terlalu besar/kecil */
-        height: auto; /* Jaga proporsi agar tidak gepeng */
-        display: block; /* Menghilangkan gap spasi teks bawaan */
-        margin: 0 auto;
+      .lucky-die {
+        animation: goldenPulse 1.2s ease-in-out infinite;
       }
 
       .btn-lucky-roll {
         display: block;
         width: 100%;
         padding: 13px 0;
-        border: 2px solid #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.5);
         border-radius: 8px;
         background: #ffdf00;
         color: #fff;
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 1.55rem;
         letter-spacing: 2px;
         cursor: pointer;
@@ -392,6 +399,7 @@
           -1px -1px 0 #b06600,
           1px -1px 0 #b06600,
           -1px 1px 0 #b06600;
+        box-shadow: 0 5px 0 #b06600;
         transition:
           transform 0.1s,
           box-shadow 0.1s;
@@ -408,8 +416,8 @@
       .lucky-possible {
         background: rgba(255, 255, 255, 0.18);
         border-radius: 8px;
-        padding: 6px 12px;
-        font-size: 0.77rem;
+        padding: 8px 14px;
+        font-size: 0.8rem;
         font-weight: 700;
         color: #fff;
         margin-bottom: 10px;
@@ -424,7 +432,22 @@
         text-underline-offset: 3px;
         cursor: pointer;
       }
+      .lucky-back-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.75);
+        font-family: "Nunito", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 800;
+        cursor: pointer;
+        margin-top: 8px;
+        text-decoration: underline;
+      }
+      .lucky-back-btn:hover {
+        color: #fff;
+      }
 
+      /* ═══ FILTER (hidden, keyboard only) ═══ */
       .filter-wrap {
         position: absolute;
         left: -9999px;
@@ -465,6 +488,7 @@
         gap: 5px;
       }
 
+      /* ═══ TOAST ═══ */
       #kbd-toast {
         position: fixed;
         bottom: 30px;
@@ -505,7 +529,7 @@
         display: inline-block;
       }
 
-      /* ══ LOADING SCREEN ══ */
+      /* ═══ LOADING SCREEN ═══ */
       #loading-screen {
         position: fixed;
         inset: 0;
@@ -529,7 +553,7 @@
       }
 
       .feel-title {
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 40px;
         color: #fff;
         letter-spacing: 3px;
@@ -545,53 +569,51 @@
         gap: 14px;
       }
 
-      /* FIX 4: loading dice — same gentle vibrate */
+      /* ── Loading dice: gentle vibrate together ── */
       @keyframes ldvibrate {
         0%,
         100% {
-          transform: translate(0, 0) rotate(0deg);
+          transform: translate(0, 0);
         }
         25% {
-          transform: translate(-1.5px, 0.5px) rotate(-0.4deg);
-        }
-        50% {
-          transform: translate(1.5px, -0.5px) rotate(0.4deg);
+          transform: translate(-1.5px, 0);
         }
         75% {
-          transform: translate(-1px, -0.5px) rotate(-0.3deg);
+          transform: translate(1.5px, 0);
         }
       }
-      #load-dice-row.vibrating .ld {
-        animation: ldvibrate 0.13s linear infinite;
+      #load-dice-row.vibrating {
+        animation: ldvibrate 0.1s linear infinite;
       }
 
       .ld {
         width: 72px;
         height: 72px;
         background: #ebebeb;
-        border-radius: 15px;
-        border: 7px solid #ffffff;
+        border-radius: 13px;
+        border: 5px solid #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: background-color 0.08s;
       }
       .ld-dot {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         background: white;
         border-radius: 50%;
       }
 
+      /* ═══ BELOW CONTENT ═══ */
       .below-content {
         width: 430px;
         max-width: 100%;
-        margin-top: 10px;
+        margin-top: 20px;
       }
       .history-card {
-        background: #1c95ff;
+        background: rgba(53, 160, 255, 0.8);
         border-radius: 16px;
-        padding: 24px 45px;
+        padding: 20px 22px;
         margin-bottom: 10px;
         border: 3px solid #9acdfa;
         text-align: center;
@@ -599,12 +621,11 @@
         position: relative;
       }
       .history-card h2 {
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 1.5rem;
         color: white;
-        letter-spacing: 1px;
-        margin: 12px 0px;
-        margin-bottom: 22px;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
       }
       .history-note {
         color: white;
@@ -615,72 +636,21 @@
       }
       .history-close-btn {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        background: rgba(255, 255, 255, 0.25);
+        top: 12px;
+        right: 14px;
+        background: none;
         border: none;
         color: white;
-           -webkit-text-stroke: 0.6px white;
-        font-size: 0.7rem;
-         font-family: "Lilita One", cursive;
+        font-size: 1rem;
         font-weight: 900;
         cursor: pointer;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        line-height: 1;
+        padding: 4px 8px;
         border-radius: 50%;
         transition: background 0.15s;
       }
       .history-close-btn:hover {
-        background: rgba(255, 255, 255, 0.35);
-      }
-
-      .history-stats-box {
-        background: #5aadf6;
-        border-radius: 12px;
-        padding: 18px 20px;
-        margin-bottom: 18px;
-        text-align: left;
-      }
-      .stats-title {
-        font-family: "Lilita One", cursive;
-        font-size: 1.05rem;
-        color: #fff;
-        letter-spacing: 1px;
-        margin-bottom: 10px;
-      }
-      .stats-badges {
-        display: grid;
-        grid-template-columns: repeat(4, max-content);
-        gap: 10px;
-        justify-content: start;
-      }
-      .stat-badge {
-        background: #fff;
-        border-radius: 5px;
-        padding: 4px 8px;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-family: "Nunito", sans-serif;
-        font-weight: 900;
-        font-size: 14px;
-      }
-      .stat-die {
-        width: 14px;
-        height: 14px;
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .stat-dot {
-        width: 4px;
-        height: 4px;
-        background: #fff;
-        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
       }
       .history-list {
         display: flex;
@@ -691,15 +661,15 @@
       .history-item {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 12px 8px;
+        gap: 10px;
+        padding: 9px 4px;
         border-bottom: 1px dashed #ddeeff;
       }
       .history-item:last-child {
         border-bottom: none;
       }
       .history-num {
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 0.85rem;
         color: white;
         min-width: 22px;
@@ -729,7 +699,7 @@
         border-radius: 50%;
       }
       .h-die-txt {
-        font-family: "Lilita One", cursive;
+        font-family: "Luckiest Guy", cursive;
         font-size: 0.75rem;
         color: white;
       }
@@ -768,6 +738,7 @@
         max-width: 90vw;
       }
 
+      /* ═══ FOOTER ═══ */
       footer {
         width: 100%;
         background-color: #002d5b;
@@ -801,7 +772,7 @@
     </style>
   </head>
   <body>
-    <!-- LOADING SCREEN -->
+    <!-- ════════ LOADING SCREEN ════════ -->
     <div id="loading-screen">
       <h1 class="feel-title" id="feel-title">FEELING LUCKY?</h1>
       <div id="load-dice-row">
@@ -812,6 +783,7 @@
       </div>
     </div>
 
+    <!-- ════════ TOAST ════════ -->
     <div id="kbd-toast">
       <span class="toast-swatch" id="toast-swatch"></span>
       <span id="toast-msg"></span>
@@ -820,8 +792,9 @@
     <div class="page-wrap">
       <img src="textdice.png" class="title-image" alt="Online Dice" />
 
+      <!-- ════════ MAIN CARD ════════ -->
       <div class="card" id="main-card">
-        <!-- NORMAL DICE VIEW -->
+        <!-- ── NORMAL DICE VIEW ── -->
         <div class="view-dice">
           <h1 class="game-title">ROLL COLOR DICE</h1>
           <div class="selects-row">
@@ -850,32 +823,28 @@
               <option value="pastel">Pastel</option>
             </select>
           </div>
+
           <div id="dice-area"></div>
+          <!-- result-row hidden via CSS -->
           <div id="result-row"></div>
+
           <div class="result-section">
             <span>🎲</span>
             <span>Result ID:</span>
             <span class="result-id-value" id="result-id-val">490720</span>
             <span>-</span>
             <a href="#">Verify</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" style="vertical-align: -2px; margin-left: 3px; opacity: 0.6;">
-              <defs>
-                <clipPath id="shield-left"><rect x="0" y="0" width="12" height="24"/></clipPath>
-                <clipPath id="shield-right"><rect x="12" y="0" width="12" height="24"/></clipPath>
-              </defs>
-              <path d="M12 2L4 5v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V5z" fill="#1a6ed4" clip-path="url(#shield-left)"/>
-              <path d="M12 2L4 5v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V5z" fill="#a8d4f7" clip-path="url(#shield-right)"/>
-              <path d="M12 2L4 5v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V5z" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
-            </svg>
+            <span>🛡</span>
           </div>
-          <button class="btn-roll" id="btn-roll">ROLL AGAIN <span style="display: inline-block; transform: skewX(-5deg); margin-left: 2px;">!</span></button>
+
+          <button class="btn-roll" id="btn-roll">ROLL AGAIN !</button>
           <button class="btn-install" style="margin-top: 0">
             <div class="it">Install App</div>
             <div class="is">Fewer ads &amp; instant access.</div>
           </button>
           <div class="card-footer">
             <div class="possible-box" id="footer-colors">
-              Possible colors are:
+              Possible colors:
               <span style="color: #ff0000; font-weight: 900">Red</span>,
               <span style="color: #f9a508; font-weight: 900">Orange</span>,
               <span style="color: #ffd700; font-weight: 900">Yellow</span>,
@@ -891,67 +860,42 @@
             >
           </div>
         </div>
+        <!-- /view-dice -->
 
-        <!-- LUCKY ROLL VIEW -->
+        <!-- ── LUCKY ROLL VIEW (replaces card content) ── -->
         <div class="view-lucky">
           <div class="lucky-view-title" id="lucky-card-title">
             CLICK FOR A LUCKY ROLL:
           </div>
           <div class="lucky-dice-row" id="lucky-dice-row">
-            <div class="lucky-die">
-              <div class="lucky-star-container">
-                <img
-                  src="luckystar.png"
-                  class="lucky-star-img"
-                  alt="Lucky Star"
-                />
-              </div>
-            </div>
-            <div class="lucky-die">
-              <div class="lucky-star-container">
-                <img
-                  src="luckystar.png"
-                  class="lucky-star-img"
-                  alt="Lucky Star"
-                />
-              </div>
-            </div>
-            <div class="lucky-die">
-              <div class="lucky-star-container">
-                <img
-                  src="luckystar.png"
-                  class="lucky-star-img"
-                  alt="Lucky Star"
-                />
-              </div>
-            </div>
-            <div class="lucky-die">
-              <div class="lucky-star-container">
-                <img
-                  src="luckystar.png"
-                  class="lucky-star-img"
-                  alt="Lucky Star"
-                />
-              </div>
-            </div>
+            <div class="lucky-die"><div class="lucky-star">⭐</div></div>
+            <div class="lucky-die"><div class="lucky-star">⭐</div></div>
+            <div class="lucky-die"><div class="lucky-star">⭐</div></div>
+            <div class="lucky-die"><div class="lucky-star">⭐</div></div>
           </div>
           <button class="btn-lucky-roll" id="btn-lucky-roll">
-            LUCKY ROLL <span style="display: inline-block; transform: skewX(-5deg); margin-left: 2px;">!</span>
+            LUCKY ROLL !
           </button>
           <div class="lucky-possible" id="lucky-possible">
             Possible colors are:
-            <span style="color: #ff0000; font-weight: 900">Red</span>,
-            <span style="color: #f9a508; font-weight: 900">Orange</span>,
-            <span style="color: #ffd700; font-weight: 900">Yellow</span>,
-            <span style="color: #008000; font-weight: 900">Green</span>,
-            <span style="color: #0000ff; font-weight: 900">Blue</span> and<br />
-            <span style="color: #7f0d88; font-weight: 900">Purple</span>.
+            <span style="color: #ff9898; font-weight: 900">Red</span>,
+            <span style="color: #ffb878; font-weight: 900">Orange</span>,
+            <span style="color: #ffe878; font-weight: 900">Yellow</span>,
+            <span style="color: #7de89a; font-weight: 900">Green</span>,
+            <span style="color: #92caff; font-weight: 900">Blue</span> and
+            <span style="color: #e090ff; font-weight: 900">Purple</span>.
           </div>
           <a class="lucky-see-link" href="#chances"
             >See your chances of winning →</a
           >
+          <br />
+          <button class="lucky-back-btn" id="btn-lucky-back">
+            ← Back to Roll
+          </button>
         </div>
+        <!-- /view-lucky -->
       </div>
+      <!-- /card -->
 
       <!-- FILTER (hidden, keyboard only) -->
       <div class="filter-wrap">
@@ -1016,16 +960,8 @@
       <!-- BELOW CONTENT -->
       <div class="below-content">
         <div class="history-card" id="history-card">
-          <h2>YOUR LAST 20 ROLLS</h2>
+          <h2>Your Last 20 Rolls</h2>
           <button class="history-close-btn" onclick="clearHistory()">✕</button>
-
-          <div class="history-stats-box" id="history-stats-box" style="display: none;">
-            <div class="stats-title">STATS:</div>
-            <div class="stats-badges" id="stats-badges-container"></div>
-            <div class="stats-title" style="margin-top: 12px;">LONGEST STREAK:</div>
-            <div class="stats-badges" id="stats-streak-container"></div>
-          </div>
-
           <div class="history-list" id="history-list">
             <div class="history-empty" id="history-empty">
               No rolls yet. Press <strong>ROLL AGAIN!</strong> to start.
@@ -1042,6 +978,7 @@
             Clear History
           </button>
         </div>
+
         <div class="stats-cards"><img src="howwork.png" alt="" /></div>
         <div class="stats-cards" style="margin-left: 9px">
           <img src="about.png" alt="" />
@@ -1093,6 +1030,9 @@
     <footer><img src="footer.png" alt="" /></footer>
 
     <script>
+      /* ═══════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════ */
       const COLORS = {
         red: { hex: "#ff0000", label: "Red" },
         orange: { hex: "#ff8c00", label: "Orange" },
@@ -1134,7 +1074,9 @@
         return LOAD_TEXTS[idx];
       }
 
-      /* RESULT ID */
+      /* ═══════════════════════════════════════════
+   RESULT ID COUNTER
+═══════════════════════════════════════════ */
       let currentResultId = Math.floor(Math.random() * 400000) + 200000;
       let resultIdAnimTimer = null;
       function animateResultId(targetId) {
@@ -1159,7 +1101,11 @@
         currentResultId = targetId;
       }
 
-      /* AUDIO */
+      /* ═══════════════════════════════════════════
+   AUDIO
+   Key fix: shake audio plays during vibrate, result audio plays EXACTLY when
+   dice appear (inside hideLoadScreen callback, right before renderDice)
+═══════════════════════════════════════════ */
       let audioShake = null,
         audioResult = null;
       function initAudio() {
@@ -1194,7 +1140,9 @@
         } catch (e) {}
       }
 
-      /* LUCKY ROLL STATE */
+      /* ═══════════════════════════════════════════
+   LUCKY ROLL LOGIC — replaces card content
+═══════════════════════════════════════════ */
       let rollCount = 0;
       let luckyThreshold = 5 + Math.floor(Math.random() * 2);
       const mainCard = document.getElementById("main-card");
@@ -1204,25 +1152,12 @@
         const row = document.getElementById("lucky-dice-row");
         row.innerHTML = "";
         for (let i = 0; i < count; i++) {
-          // 1. Buat kontainer dadu
           const d = document.createElement("div");
           d.className = "lucky-die";
-
-          // 2. Buat kontainer untuk bintang (agar mudah diposisikan)
           const s = document.createElement("div");
-          s.className = "lucky-star-container";
-
-          // 3. Buat elemen gambar
-          const img = document.createElement("img");
-          img.src = "luckystar.png"; // Pastikan path file benar
-          img.className = "lucky-star-img";
-          img.alt = "Lucky Star";
-
-          // 4. Masukkan gambar ke kontainer bintang, lalu ke dadu
-          s.appendChild(img);
+          s.className = "lucky-star";
+          s.textContent = "⭐";
           d.appendChild(s);
-
-          // 5. Masukkan dadu ke dalam row
           row.appendChild(d);
         }
         mainCard.classList.add("lucky-mode");
@@ -1234,50 +1169,16 @@
         rollCount = 0;
       }
 
-      /* FIX 2 & 3: doLuckyRoll
-         - lucky-mode stays ON the entire time (no flicker of dice view)
-         - loading screen uses "FEELING LUCKY?" text always for lucky roll
-         - hideLuckyView() only called inside hideLoadScreen callback
-      */
       function doLuckyRoll() {
-        if (rolling) return;
-        rolling = true;
-
-        const count = getCount();
-
-        playShake();
-        /* FIX 3: force "FEELING LUCKY?" text on lucky roll loading screen */
-        showLoadScreen(count, "FEELING LUCKY?");
-
+        hideLuckyView();
         setTimeout(() => {
-          stopShake();
-        }, 600);
-
-        setTimeout(() => {
-          const newRes = Array.from({ length: count }, () => rollOne());
-          lastRes = newRes;
-          addToHistory(newRes);
-          const newId =
-            currentResultId + Math.floor(Math.random() * 8000 + 3000);
-          animateResultId(newId);
-          playResult();
-
-          setTimeout(() => {
-            hideLoadScreen(() => {
-              /* FIX 2: switch view HERE — loading screen is fully hidden before
-                 we remove lucky-mode, so no flicker of the dice card */
-              hideLuckyView();
-              diceArea.classList.remove("vibrating");
-              renderDice(newRes, true);
-              rolling = false;
-              btnRoll.disabled = false;
-              btnRoll.innerHTML = 'ROLL AGAIN <span style="display: inline-block; transform: skewX(-5deg); margin-left: 2px;">!</span>';
-            });
-          }, 200);
-        }, 700);
+          if (!rolling) doRoll();
+        }, 200);
       }
 
-      /* CORE DOM */
+      /* ═══════════════════════════════════════════
+   CORE STATE & DOM
+═══════════════════════════════════════════ */
       let rolling = false,
         lastRes = [];
       const G = (id) => document.getElementById(id);
@@ -1309,7 +1210,9 @@
       const isColor = () => getType() === "color" || getType() === "perya";
       const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-      /* TOAST */
+      /* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
       let toastTimer = null;
       function showToast(msg, hex) {
         toastMsg.textContent = msg;
@@ -1324,7 +1227,9 @@
         toastTimer = setTimeout(() => kbdToast.classList.remove("show"), 1400);
       }
 
-      /* FILTER */
+      /* ═══════════════════════════════════════════
+   FILTER HELPERS
+═══════════════════════════════════════════ */
       function availColors() {
         const excl = [...document.querySelectorAll(".exc-color:checked")].map(
           (c) => c.value,
@@ -1350,7 +1255,9 @@
         };
       }
 
-      /* KEYBOARD */
+      /* ═══════════════════════════════════════════
+   KEYBOARD
+═══════════════════════════════════════════ */
       const COLOR_KEY_MAP = {
         r: "red",
         o: "orange",
@@ -1425,10 +1332,7 @@
         const key = e.key.toLowerCase();
         if (e.key === " " || e.key === "Enter") {
           e.preventDefault();
-          if (!rolling) {
-            if (mainCard.classList.contains("lucky-mode")) doLuckyRoll();
-            else doRoll();
-          }
+          if (!rolling) doRoll();
           return;
         }
         if (isColor()) {
@@ -1444,7 +1348,9 @@
         }
       });
 
-      /* HISTORY */
+      /* ═══════════════════════════════════════════
+   ROLL HISTORY
+═══════════════════════════════════════════ */
       let rollHistory = [];
       function addToHistory(res) {
         if (res.length > 6) return;
@@ -1456,80 +1362,10 @@
         if (rollHistory.length === 0) {
           historyEmpty.style.display = "";
           historyClear.style.display = "none";
-          document.getElementById("history-stats-box").style.display = "none";
           return;
         }
         historyEmpty.style.display = "none";
         historyClear.style.display = "";
-        
-        let isColorMode = rollHistory[0].res[0] && rollHistory[0].res[0].type === "color";
-        document.getElementById("history-stats-box").style.display = "block";
-        
-        let allDice = [];
-        for (let i = rollHistory.length - 1; i >= 0; i--) {
-          allDice = allDice.concat(rollHistory[i].res);
-        }
-        
-        let counts = {};
-        let currentStreakVal = null;
-        let currentStreakCount = 0;
-        let maxStreakVal = null;
-        let maxStreakCount = 0;
-        
-        allDice.forEach(r => {
-          let key = r.val;
-          counts[key] = (counts[key] || 0) + 1;
-          
-          if (key === currentStreakVal) {
-            currentStreakCount++;
-          } else {
-            currentStreakVal = key;
-            currentStreakCount = 1;
-          }
-          
-          if (currentStreakCount > maxStreakCount) {
-            maxStreakCount = currentStreakCount;
-            maxStreakVal = currentStreakVal;
-          }
-        });
-        
-        let sortedCounts = Object.keys(counts).map(k => ({ val: k, count: counts[k] })).sort((a, b) => b.count - a.count);
-        
-        let badgesHtml = "";
-        sortedCounts.forEach((item, index) => {
-          let trophy = index === 0 ? " 🏆" : "";
-          if (isColorMode) {
-            let colorHex = COLORS[item.val].hex;
-            badgesHtml += `<div class="stat-badge" style="color: ${colorHex}">
-              <div class="stat-die" style="background: ${colorHex}"><div class="stat-dot"></div></div>
-              x${item.count}${trophy}
-            </div>`;
-          } else {
-            badgesHtml += `<div class="stat-badge" style="color: #1a3d6e">
-              <div class="stat-die" style="background: #f0f4fa; border: 1px solid #1a3d6e; color: #1a3d6e; font-size: 10px; font-weight: 900; line-height: 1;">${item.val}</div>
-              x${item.count}${trophy}
-            </div>`;
-          }
-        });
-        document.getElementById("stats-badges-container").innerHTML = badgesHtml;
-        
-        let streakHtml = "";
-        if (maxStreakVal !== null) {
-          if (isColorMode) {
-            let maxHex = COLORS[maxStreakVal].hex;
-            streakHtml = `<div class="stat-badge" style="color: ${maxHex}">
-              <div class="stat-die" style="background: ${maxHex}"><div class="stat-dot"></div></div>
-              x${maxStreakCount} 🔥
-            </div>`;
-          } else {
-            streakHtml = `<div class="stat-badge" style="color: #1a3d6e">
-              <div class="stat-die" style="background: #f0f4fa; border: 1px solid #1a3d6e; color: #1a3d6e; font-size: 10px; font-weight: 900; line-height: 1;">${maxStreakVal}</div>
-              x${maxStreakCount} 🔥
-            </div>`;
-          }
-        }
-        document.getElementById("stats-streak-container").innerHTML = streakHtml;
-
         [...historyList.querySelectorAll(".history-item")].forEach((el) =>
           el.remove(),
         );
@@ -1570,10 +1406,11 @@
         );
         historyEmpty.style.display = "";
         historyClear.style.display = "none";
-        document.getElementById("history-stats-box").style.display = "none";
       }
 
-      /* RENDER DICE */
+      /* ═══════════════════════════════════════════
+   RENDER DICE
+═══════════════════════════════════════════ */
       function makeDie(r, sz) {
         const el = document.createElement("div");
         el.className = "die";
@@ -1609,14 +1446,19 @@
 
       function renderDice(res, animate) {
         diceArea.innerHTML = "";
-        const n = res.length;
-        const available = Math.floor((374 - (n - 1) * 10) / n);
-        const sz = Math.min(76, Math.max(55, available));
-        diceArea.style.gap = "10px";
+        const n = res.length,
+          sz = n <= 2 ? 105 : n <= 4 ? 88 : 72;
+        diceArea.style.gap = (n <= 4 ? 10 : 7) + "px";
         res.forEach((r, i) => {
           const die = makeDie(r, sz);
+          if (animate) {
+            die.classList.add("pop");
+            die.style.animationDelay = i * 0.07 + "s";
+          }
           diceArea.appendChild(die);
         });
+
+        /* result-row hidden via CSS — but populate for screen-readers/history */
         const lightMap = {
           "#ff0000": "#ff9898",
           "#ff8c00": "#ffb878",
@@ -1648,9 +1490,11 @@
         }
       }
 
-      /* LOADING SCREEN
-         FIX 3: accepts optional forced text for lucky roll */
-      function showLoadScreen(count, forcedText) {
+      /* ═══════════════════════════════════════════
+   LOADING SCREEN
+═══════════════════════════════════════════ */
+      function showLoadScreen(count) {
+        /* rebuild boxes */
         loadDiceRow.innerHTML = "";
         for (let i = 0; i < count; i++) {
           const d = document.createElement("div");
@@ -1658,10 +1502,10 @@
           d.innerHTML = '<div class="ld-dot"></div>';
           loadDiceRow.appendChild(d);
         }
-        /* FIX 3: use forcedText if provided, otherwise pick random */
-        feelTitle.textContent = forcedText || pickLoadText();
+        feelTitle.textContent = pickLoadText();
         loadScreen.classList.remove("hidden", "fading");
         loadScreen.style.opacity = "1";
+        /* gentle vibrate on the whole row */
         loadDiceRow.classList.add("vibrating");
       }
 
@@ -1675,53 +1519,69 @@
         }, 420);
       }
 
-      /* NORMAL ROLL */
+      /* ═══════════════════════════════════════════
+   ROLL FLOW
+   Timeline:
+     0ms    — show loading screen, start shake audio, dice-area vibrate
+     600ms  — stop shake audio (loading screen still visible)
+     700ms  — compute result, play result audio
+     900ms  — hide loading screen → fade 420ms → render dice
+═══════════════════════════════════════════ */
       function doRoll() {
         if (rolling) return;
         rolling = true;
         btnRoll.disabled = true;
         btnRoll.textContent = "ROLLING...";
         const count = getCount();
+
+        /* Start shake audio + gentle vibrate on main dice-area */
         playShake();
         diceArea.classList.add("vibrating");
+
         showLoadScreen(count);
+
+        /* Stop shake audio at 600ms */
         setTimeout(() => {
           stopShake();
         }, 600);
+
+        /* Compute result + play result audio at 700ms */
         setTimeout(() => {
           const newRes = Array.from({ length: count }, () => rollOne());
           lastRes = newRes;
-          
-          const willTriggerLucky = (rollCount + 1) >= luckyThreshold;
-          if (!willTriggerLucky) {
-            addToHistory(newRes);
-            const newId =
-              currentResultId + Math.floor(Math.random() * 8000 + 3000);
-            animateResultId(newId);
-            setTimeout(playResult, 200);
-          }
-          
+          addToHistory(newRes);
+
+          /* animate result ID */
+          const newId =
+            currentResultId + Math.floor(Math.random() * 8000 + 3000);
+          animateResultId(newId);
+
+          /* ← result audio plays NOW, exactly when result is decided */
+          playResult();
+
+          /* Hide loading at 900ms (200ms after deciding result = slight pause for effect) */
           setTimeout(() => {
-            rollCount++;
-            if (rollCount >= luckyThreshold) {
-              showLuckyView();
-            }
             hideLoadScreen(() => {
+              /* Loading screen gone — show dice */
               diceArea.classList.remove("vibrating");
+              renderDice(newRes, true);
+              btnRoll.disabled = false;
+              btnRoll.textContent = "ROLL AGAIN !";
+              rolling = false;
+
+              /* Lucky roll trigger */
+              rollCount++;
               if (rollCount >= luckyThreshold) {
-                rolling = false;
-              } else {
-                renderDice(newRes, true);
-                btnRoll.disabled = false;
-                btnRoll.innerHTML = 'ROLL AGAIN <span style="display: inline-block; transform: skewX(-5deg); margin-left: 2px;">!</span>';
-                rolling = false;
+                setTimeout(() => showLuckyView(), 600);
               }
             });
           }, 200);
         }, 700);
       }
 
-      /* SIDEBAR */
+      /* ═══════════════════════════════════════════
+   SIDEBAR / SETTINGS
+═══════════════════════════════════════════ */
       function buildNumChecks() {
         const sides = parseInt(getType());
         numChkList.innerHTML = "";
@@ -1778,11 +1638,16 @@
         }
       }
 
-      /* EVENTS */
+      /* ═══════════════════════════════════════════
+   EVENTS
+═══════════════════════════════════════════ */
       btnRoll.addEventListener("click", doRoll);
       document
         .getElementById("btn-lucky-roll")
         .addEventListener("click", doLuckyRoll);
+      document
+        .getElementById("btn-lucky-back")
+        .addEventListener("click", hideLuckyView);
       selType.addEventListener("change", updateSidebar);
       selTheme.addEventListener("change", applyTheme);
       document.addEventListener("change", (e) => {
@@ -1793,7 +1658,9 @@
           checkWarn();
       });
 
-      /* INIT */
+      /* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
       function init() {
         initAudio();
         updateSidebar();
